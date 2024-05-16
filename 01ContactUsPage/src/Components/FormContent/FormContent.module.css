@@ -1,0 +1,48 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.leftContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.form_content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn_div {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+}
+
+div label {
+  position: relative;
+  top: 12px;
+  left: 15px;
+  z-index: 111;
+  background-color: #fff;
+  width: fit-content;
+  padding: 0 8px;
+  font-weight: 500;
+}
+
+div textarea {
+  padding: 10px;
+}
