@@ -23,7 +23,7 @@ const Sidenav = () => {
         </h3>
         {navLinks.map((nav) => (
           <div
-            className="w-full flex items-center rounded-md shadow-sm justify-start gap-4 hover:bg-[#F3F3F7] mb-3 px-4 py-4 font-[500] text-gray-500 transition-all hover:text-black hover:cursor-pointer"
+            className="w-full flex items-center rounded-md shadow-sm justify-start gap-4 hover:bg-[#F3F3F7] mb-3 px-4 py-3 font-[500] text-gray-500 transition-all hover:text-black hover:cursor-pointer"
             key={nav.text}
           >
             <span>{<nav.icon />}</span>
@@ -31,7 +31,7 @@ const Sidenav = () => {
           </div>
         ))}
       </div>
-      <div className="w-full flex items-center rounded-md shadow-sm justify-start gap-4 hover:bg-[#F3F3F7] mb-3 px-4 py-4 font-[500] text-gray-500 transition-all hover:text-black hover:cursor-pointer">
+      <div className="w-full flex items-center rounded-md shadow-sm justify-start gap-4 hover:bg-[#F3F3F7] mb-3 px-4 py-3 font-[500] text-gray-500 transition-all hover:text-black hover:cursor-pointer">
         <BiSupport />
         <h4 className="text-[15px]">Support</h4>
       </div>
