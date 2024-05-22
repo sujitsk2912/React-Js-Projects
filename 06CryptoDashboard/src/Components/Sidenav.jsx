@@ -1,7 +1,9 @@
 import { RxDashboard } from "react-icons/rx";
 import { TbArrowsDoubleSwNe } from "react-icons/tb";
 import { BiSupport } from "react-icons/bi";
+import { Link } from "react-router-dom";
 import "../index.css";
+
 const Sidenav = () => {
   const navLinks = [
     {
@@ -12,7 +14,7 @@ const Sidenav = () => {
     {
       icon: TbArrowsDoubleSwNe,
       text: "Transactions",
-      link: "/",
+      link: "/transactions",
     },
   ];
   return (
@@ -22,18 +24,19 @@ const Sidenav = () => {
           Crypto Dashboard
         </h3>
         {navLinks.map((nav) => (
-          <div
-            className="w-full flex items-center rounded-md shadow-sm justify-start gap-4 hover:bg-[#F3F3F7] mb-3 px-4 py-3 font-[500] text-gray-500 transition-all hover:text-black hover:cursor-pointer"
-            key={nav.text}
-          >
-            <span>{<nav.icon />}</span>
-            <h4 className="text-[15px]">{nav.text}</h4>
-          </div>
+          <Link to={nav.link} key={nav.text} className="w-full">
+            <div className="w-full flex items-center rounded-md shadow-sm justify-start gap-4 hover:bg-[#F3F3F7] mb-3 px-4 py-3 font-[500] text-gray-500 transition-all hover:text-black hover:cursor-pointer">
+              <span>{<nav.icon />}</span>
+              <h4 className="text-[15px]">{nav.text}</h4>
+            </div>
+          </Link>
         ))}
       </div>
       <div className="w-full flex items-center rounded-md shadow-sm justify-start gap-4 hover:bg-[#F3F3F7] mb-3 px-4 py-3 font-[500] text-gray-500 transition-all hover:text-black hover:cursor-pointer">
         <BiSupport />
-        <h4 className="text-[15px]">Support</h4>
+        <Link to="/support">
+          <h4 className="text-[15px]">Support</h4>
+        </Link>
       </div>
     </aside>
   );

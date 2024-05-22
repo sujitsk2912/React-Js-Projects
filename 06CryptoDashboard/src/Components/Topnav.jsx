@@ -4,7 +4,7 @@ import SidenavDrawer from "./SidenavDrawer";
 
 const Topnav = ({ title }) => {
   return (
-    <nav className=" h-14 flex w-full ">
+    <nav className="bg-white h-14 flex w-full ">
       <div className="flex min-w-[95%] justify-between items-center m-auto">
         <div className="lg:hidden">
           <SidenavDrawer />

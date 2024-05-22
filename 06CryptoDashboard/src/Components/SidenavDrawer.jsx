@@ -26,7 +26,7 @@ const SidenavDrawer = () => {
 
       <div
         id="drawer-navigation"
-        className={`fixed top-0 left-0 z-40 h-screen overflow-y-auto transition-transform transform bg-white w-64 dark:bg-gray-800 ${
+        className={`fixed top-0 left-0 z-40 h-screen overflow-y-auto transition-transform transform bg-white w-64 ${
           isDrawerOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         aria-labelledby="drawer-navigation-label"
@@ -41,8 +41,7 @@ const SidenavDrawer = () => {
           <span className="sr-only">Close menu</span>
         </button>
         <div className="lg:hidden">
-        <Sidenav />
-
+          <Sidenav />
         </div>
       </div>
     </div>
