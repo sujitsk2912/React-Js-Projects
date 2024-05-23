@@ -1,9 +1,9 @@
-import DashboardLayout from "../../Components/DashboardLayout";
-import { MdEmail } from "react-icons/md";
 import { IoChatbubble } from "react-icons/io5";
+import DashboardLayout from "../../Components/DashboardLayout";
 import SupportForm from "./Components/SupportForm";
+import { MdEmail } from "react-icons/md";
 
-const Support = () => {
+const SupportNew = () => {
   return (
     <div>
       <DashboardLayout title={"Support"}>
@@ -45,4 +45,4 @@ const Support = () => {
   );
 };
 
-export default Support;
+export default SupportNew;
