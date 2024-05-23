@@ -4,7 +4,7 @@ import { PiDownloadSimpleBold } from "react-icons/pi";
 import { IoSearchOutline } from "react-icons/io5";
 import TransactionTable from "./Components/TransactionTable";
 
-const Transactions = () => {
+const TransactionsNew = () => {
   const tabs = [
     {
       name: "All",
@@ -86,4 +86,4 @@ const Transactions = () => {
   );
 };
 
-export default Transactions;
+export default TransactionsNew;
