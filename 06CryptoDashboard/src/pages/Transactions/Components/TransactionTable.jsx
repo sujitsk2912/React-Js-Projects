@@ -7,7 +7,6 @@ import {
   Td,
   TableContainer,
 } from "@chakra-ui/react";
-import { color } from "framer-motion";
 
 const TransactionTable = () => {
   const tableData = [
@@ -99,16 +98,16 @@ const TransactionTable = () => {
         <Tbody>
           {tableData.map((data) => (
             <tr key={data.id} className="align-top">
-              <Td className="font-[500]">{data.id}</Td>
+              <Td className="font-[500] max-sm:text-sm">{data.id}</Td>
               <Td>
-                <h3 className="font-[500]">{data.date}</h3>
+                <h3 className="font-[500] max-sm:text-sm">{data.date}</h3>
                 <p className="text-sm text-gray-500">{data.time}</p>
               </Td>
               <Td>
-                <h3 className="font-[500]">{data.type.name}</h3>
+                <h3 className="font-[500] max-sm:text-sm">{data.type.name}</h3>
                 <p className="text-sm text-gray-500">{data.type.tag}</p>
               </Td>
-              <Td className="font-[500]">{data.amount}</Td>
+              <Td className="font-[500] max-sm:text-sm">{data.amount}</Td>
               <Td>
                 <p
                   className="text-sm text-white w-fit rounded-full px-3 py-1"
