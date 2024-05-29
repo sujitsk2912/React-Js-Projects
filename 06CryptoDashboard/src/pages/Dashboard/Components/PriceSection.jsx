@@ -37,7 +37,7 @@ const PriceSection = () => {
 
           <img
             className="w-full min-h-[116px]"
-            src="../../../../public/images/chart.svg"
+            src="../images/chart.svg"
             alt="chart"
           />
 
