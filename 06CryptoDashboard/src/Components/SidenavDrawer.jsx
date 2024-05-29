@@ -11,7 +11,7 @@ const SidenavDrawer = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-[100vh] max-h-full">
       <div className="lg:hidden text-center">
         <HiMenuAlt1
           className="text-3xl cursor-pointer"
@@ -20,7 +20,7 @@ const SidenavDrawer = () => {
         />
       </div>
 
-      <aside className="hidden lg:flex flex-col justify-between items-center h-full min-w-[16rem] p-2 shadow-lg max-w-[16rem]">
+      <aside className="hidden lg:flex flex-col justify-between items-center min-h-[100vh] max-h-full min-w-[16rem] p-2 shadow-lg max-w-[16rem]">
         <Sidenav />
       </aside>
 

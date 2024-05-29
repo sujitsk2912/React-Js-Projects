@@ -18,7 +18,7 @@ const Sidenav = () => {
     },
   ];
   return (
-    <aside className="flex flex-col justify-between items-center min-h-screen max-h-full min-w-[16rem] p-2 shadow-lg max-w-[16rem]">
+    <aside className="flex flex-col justify-between items-center min-h-[100vh] max-h-full min-w-[16rem] p-2 shadow-lg max-w-[16rem]">
       <div className="w-full h-full flex items-center flex-col">
         <h3 className="text-lg font-semibold mt-10 mb-4 text-violet-700 uppercase">
           Crypto Dashboard
