@@ -1,0 +1,4 @@
+/* App.css or any global CSS file */
+.ReactQueryDevtools > button > svg {
+  display: none;
+}

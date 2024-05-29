@@ -1,11 +1,37 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, ref, string } from "yup";
+import { signupUser } from "../../../api/query/userQuery";
+import { Button, useToast } from "@chakra-ui/react";
+import { useMutation } from "react-query";
+// import { useState } from "react";
 
 const Signup = () => {
+  let email = "";
+  const navigate = useNavigate();
+  const toast = useToast();
+
+  const { mutate, isLoading } = useMutation({
+    mutationKey: ["signup"],
+    mutationFn: signupUser,
+    onSuccess: (data) => {
+      if (email != "") {
+        navigate(`/send-verification-mail/${email}`);
+      }
+    },
+    onError: (error) => {
+      toast({
+        title: "Signup Error",
+        description: error.message,
+        status: "error",
+      });
+    },
+    enabled: !!email,
+  });
+
   const signupValidationSchema = object({
-    name: string().required("Name is required"),
-    surname: string().required("Surname is required"),
+    firstName: string().required("FirstName is required"),
+    lastName: string().required("Lastame is required"),
     email: string()
       .email("Invalid email address")
       .required("Email is required"),
@@ -32,14 +58,21 @@ const Signup = () => {
 
           <Formik
             initialValues={{
-              name: "",
-              surname: "",
+              firstName: "",
+              lastName: "",
               email: "",
               password: "",
               repeatPassword: "",
             }}
-            onSubmit={async (values) => {
-              console.log(values);
+            onSubmit={(values) => {
+              // setEmail(values.email);
+              email = document.getElementById("email").value;
+              mutate({
+                firstName: values.firstName,
+                lastName: values.lastName,
+                email: values.email,
+                password: values.password,
+              });
             }}
             validationSchema={signupValidationSchema}
           >
@@ -48,40 +81,40 @@ const Signup = () => {
                 <div className="mb-5 flex justify-between gap-4 w-full max-sm:flex-col">
                   <div className="w-full">
                     <label
-                      htmlFor="name"
+                      htmlFor="firstName"
                       className="block text-md text-gray-600 font-medium"
                     >
-                      Name
+                      Firstname
                     </label>
                     <Field
                       type="text"
-                      id="name"
-                      name="name"
+                      id="firstName"
+                      name="firstName"
                       className="w-full text-gray-600 px-4 py-2 rounded-lg mt-2 border-2 outline-none border-gray-200 focus:ring-0"
                       placeholder="James"
                     />
                     <ErrorMessage
-                      name="name"
+                      name="firstName"
                       component="p"
                       className="text-red-500 text-sm mt-1 ml-2"
                     />
                   </div>
                   <div className="w-full">
                     <label
-                      htmlFor="surname"
+                      htmlFor="lastName"
                       className="block text-md text-gray-600 font-medium"
                     >
-                      Surname
+                      Lastname
                     </label>
                     <Field
                       type="text"
-                      id="surname"
-                      name="surname"
+                      id="lastName"
+                      name="lastName"
                       className="w-full text-gray-600 px-4 py-2 rounded-lg mt-2 border-2 outline-none border-gray-200 focus:ring-0"
                       placeholder="Arthur"
                     />
                     <ErrorMessage
-                      name="surname"
+                      name="lastName"
                       component="p"
                       className="text-red-500 text-sm mt-1 ml-2"
                     />
@@ -99,7 +132,6 @@ const Signup = () => {
                       type="email"
                       id="email"
                       name="email"
-                      autoComplete="off"
                       className="w-full text-gray-600 px-4 py-2 rounded-lg mt-2 border-2 outline-none border-gray-200 focus:ring-0"
                       placeholder="name@mail.com"
                     />
@@ -172,12 +204,25 @@ const Signup = () => {
                   </label>
                 </div>
 
-                <button
+                <Button
+                  isLoading={isLoading}
                   type="submit"
-                  className="bg-[#D8DDE2] text-[#797E82] h-10 w-full flex justify-center items-center p-2 font-[500] text-sm rounded-lg transition-all hover:bg-indigo-500 hover:text-white "
+                  height="10"
+                  width="full"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  padding="2"
+                  fontWeight="500"
+                  fontSize="sm"
+                  borderRadius="lg"
+                  transition="all 0.2s"
+                  bg="#D8DDE2"
+                  color="#797E82"
+                  _hover={{ bg: "rgb(79 70 229)", color: "white" }}
                 >
                   Create Account
-                </button>
+                </Button>
 
                 <div className="mt-4 flex items-center justify-center text-sm font-medium">
                   <p className="text-gray-600">Already have an account?</p>

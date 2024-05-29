@@ -1,8 +1,33 @@
 import { Field, Formik, Form, ErrorMessage } from "formik";
+import { useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import { object, string } from "yup";
+import { signinUser } from "../../../api/query/userQuery";
+import { Button, useToast } from "@chakra-ui/react";
+import useAuth from "../../../hooks/useAuth";
 
 const Signin = () => {
+  const { login } = useAuth();
+  const toast = useToast();
+
+  const { mutate, isLoading } = useMutation({
+    mutationKey: ["signin"],
+    mutationFn: signinUser,
+    onSuccess: (data) => {
+      const { token } = data;
+      if (token) {
+        login(token);
+      }
+    },
+    onError: (error) => {
+      toast({
+        title: "Signin Error",
+        description: error.message,
+        status: "error",
+      });
+    },
+  });
+
   const signinValidationSchema = object({
     email: string()
       .email("Invalid email address")
@@ -30,7 +55,7 @@ const Signin = () => {
               password: "",
             }}
             onSubmit={async (values) => {
-              console.log(values);
+              mutate(values);
             }}
             validationSchema={signinValidationSchema}
           >
@@ -104,19 +129,47 @@ const Signin = () => {
                   </Link>
                 </div>
 
-                <button
+                <Button
+                  isLoading={isLoading}
                   type="submit"
-                  className="bg-[#D8DDE2] text-[#797E82] h-10 w-full flex justify-center items-center p-2 font-[500] text-sm rounded-lg transition-all hover:bg-indigo-500 hover:text-white focus:bg-indigo-500 focus:text-white"
+                  height="10"
+                  width="full"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  padding="2"
+                  fontWeight="500"
+                  fontSize="sm"
+                  borderRadius="lg"
+                  transition="all 0.2s"
+                  bg="#D8DDE2"
+                  color="#797E82"
+                  _hover={{ bg: "rgb(79 70 229)", color: "white" }}
                 >
                   Log In
-                </button>
+                </Button>
               </Form>
             }
           </Formik>
           <Link to={"/signup"}>
-            <button className="bg-[#D8DDE2] text-[#797E82] h-10 w-full flex justify-center items-center p-2 font-[500] text-sm rounded-lg transition-all hover:bg-indigo-500 hover:text-white focus:bg-indigo-500 focus:text-white mt-3">
+            <Button
+              marginTop="3"
+              height="10"
+              width="full"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              padding="2"
+              fontWeight="500"
+              fontSize="sm"
+              borderRadius="lg"
+              transition="all 0.2s"
+              bg="#D8DDE2"
+              color="#797E82"
+              _hover={{ bg: "rgb(79 70 229)", color: "white" }}
+            >
               Create New Account
-            </button>
+            </Button>
           </Link>
         </div>
       </div>

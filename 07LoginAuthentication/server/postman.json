@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ee4b2a9d-85e5-467d-9b5d-8ee6b301f916",
+		"_postman_id": "ec23230b-8327-4fcf-bca9-e8b5f5522a1d",
 		"name": "Project-7 Auth Backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11759517",
-		"_collection_link": "https://www.postman.com/restless-escape-453039/workspace/dosomecoding/collection/11759517-ee4b2a9d-85e5-467d-9b5d-8ee6b301f916?action=share&creator=11759517&source=collection_link"
+		"_exporter_id": "32872822"
 	},
 	"item": [
 		{
@@ -41,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"test@dosomecoding.com\",\n    \"password\":\"anshuraj\"\n}",
+					"raw": "{\n    \"firstName\":\"sujit\",\n    \"lastName\":\"khangar\",\n    \"email\":\"test@dosomecoding.com\",\n    \"password\":\"anshuraj\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -49,13 +48,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/user/signin",
+					"raw": "{{url}}/user/signup",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"user",
-						"signin"
+						"signup"
 					]
 				}
 			},
@@ -68,7 +67,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"test@dosomecoding.com\",\n    \"password\":\"anshuraj\"\n}",
+					"raw": "{\n    \"email\":\"test@gmail.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -76,13 +75,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/user/signin",
+					"raw": "{{url}}/user/send-verification-mail",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"user",
-						"signin"
+						"send-verification-mail"
 					]
 				}
 			},
@@ -130,13 +129,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/user//forgot-password",
+					"raw": "{{url}}/user/forgot-password",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"user",
-						"",
 						"forgot-password"
 					]
 				}
@@ -158,13 +156,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/user//verify-forgot-mail",
+					"raw": "{{url}}/user/verify-forgot-mail",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"user",
-						"",
 						"verify-forgot-mail"
 					]
 				}

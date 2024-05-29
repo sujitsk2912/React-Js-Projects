@@ -7,7 +7,6 @@ import {
   Td,
   TableContainer,
 } from "@chakra-ui/react";
-import { color } from "framer-motion";
 
 const TransactionTable = () => {
   const tableData = [

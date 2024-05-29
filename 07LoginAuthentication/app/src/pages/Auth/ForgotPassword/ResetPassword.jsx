@@ -1,5 +1,9 @@
+import { Button, Center, Spinner, useToast } from "@chakra-ui/react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useMutation } from "react-query";
+import { useNavigate, useParams } from "react-router-dom";
 import { object, ref, string } from "yup";
+import { verifyForgetPasswordToken } from "../../../api/query/userQuery";
 
 const ResetPassword = () => {
   const resetPasswordValidationSchema = object({
@@ -10,6 +14,34 @@ const ResetPassword = () => {
       .oneOf([ref("password"), null], "Passwords must match")
       .required("Repeat password is required"),
   });
+
+  const toast = useToast();
+  const navigate = useNavigate();
+  const { token } = useParams();
+
+  const { mutate, isLoading } = useMutation({
+    mutationKey: ["forgot-password-verify"],
+    mutationFn: verifyForgetPasswordToken,
+    enabled: !!token,
+    onSuccess: (data) => {
+      navigate("/reset_Successful");
+    },
+    onError: (error) => {
+      toast({
+        title: "Signup Error",
+        description: error.message,
+        status: "error",
+      });
+      navigate("/forgot-password");
+    },
+  });
+
+  if (isLoading)
+    return (
+      <Center h="100vh">
+        <Spinner />
+      </Center>
+    );
 
   return (
     <div className="bg-slate-100 h-screen w-full flex justify-center items-center">
@@ -28,6 +60,10 @@ const ResetPassword = () => {
             }}
             onSubmit={async (values) => {
               console.log(values);
+              mutate({
+                token,
+                password: values.password,
+              });
             }}
             validationSchema={resetPasswordValidationSchema}
           >
@@ -75,12 +111,30 @@ const ResetPassword = () => {
                     />
                   </div>
                 </div>
-                <button
+                <Button
+                  isLoading={isLoading}
                   type="submit"
-                  className="bg-[#D8DDE2] text-[#797E82] h-10 w-full flex justify-center items-center p-2 font-[500] text-sm rounded-lg transition-all hover:bg-indigo-500 hover:text-white focus:bg-indigo-500 focus:text-white mt-6"
+                  mt="5"
+                  height="10"
+                  width="full"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  padding="2"
+                  fontWeight="500"
+                  fontSize="sm"
+                  borderRadius="lg"
+                  transition="all 0.2s"
+                  bg="rgb(79 70 229)"
+                  color="#fff"
+                  _hover={{
+                    bg: "#fff",
+                    color: "rgb(79 70 229)",
+                    border: "1px solid rgb(79 70 229)",
+                  }}
                 >
                   Reset Password
-                </button>
+                </Button>
               </Form>
             )}
           </Formik>

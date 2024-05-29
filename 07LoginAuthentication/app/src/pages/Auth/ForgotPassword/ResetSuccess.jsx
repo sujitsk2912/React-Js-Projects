@@ -1,3 +1,4 @@
+import { Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const ResetSuccess = () => {
@@ -16,9 +17,29 @@ const ResetSuccess = () => {
           </div>
 
           <Link to={"/signin"} className="w-full">
-            <button className="h-10 w-full flex justify-center items-center  p-2 font-[500] text-sm rounded-lg transition-all bg-indigo-500 hover:bg-indigo-600 text-white mt-2">
+            <Button
+              type="submit"
+              mt="2"
+              height="10"
+              width="full"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              padding="2"
+              fontWeight="500"
+              fontSize="sm"
+              borderRadius="lg"
+              transition="all 0.2s"
+              bg="rgb(79 70 229)"
+              color="#fff"
+              _hover={{
+                bg: "#fff",
+                color: "rgb(79 70 229)",
+                border: "1px solid rgb(79 70 229)",
+              }}
+            >
               Sign In
-            </button>
+            </Button>
           </Link>
         </div>
       </div>
