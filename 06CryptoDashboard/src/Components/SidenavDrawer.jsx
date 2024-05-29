@@ -20,7 +20,7 @@ const SidenavDrawer = () => {
         />
       </div>
 
-      <aside className="hidden lg:flex flex-col justify-between items-center h-screen min-w-[16rem] p-2 shadow-lg max-w-[16rem]">
+      <aside className="hidden lg:flex flex-col justify-between items-center h-full min-w-[16rem] p-2 shadow-lg max-w-[16rem]">
         <Sidenav />
       </aside>
 
