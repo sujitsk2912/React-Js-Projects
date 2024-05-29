@@ -11,7 +11,7 @@ const SidenavDrawer = () => {
   };
 
   return (
-    <div className="min-h-[100vh] max-h-full">
+    <div>
       <div className="lg:hidden text-center">
         <HiMenuAlt1
           className="text-3xl cursor-pointer"
