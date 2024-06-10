@@ -1,0 +1,88 @@
+@import "/public/css-configs/mixins.scss";
+
+// footer section
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5.2rem;
+  margin: 0 20px; //   grid-template-columns: repeat(auto);
+
+  @include sm {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  @include md {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  @include lg {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  p {
+    font-size: 15px;
+    color: #6b7280;
+  }
+
+  span {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    color: #6b7280;
+    font-size: 15px;
+    gap: 7px;
+
+    i {
+      font-size: 16px;
+      margin-top: 3px;
+    }
+  }
+  a {
+    color: #6b7280;
+    font-size: 15px;
+    &:hover {
+      color: #40444c;
+    }
+  }
+
+  ul li {
+    margin-bottom: 8px;
+  }
+}
+
+.copyright-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #6b7280;
+  font-size: 14px;
+  text-align: center;
+  border-top: 1px solid #94979eb3;
+  height: 3.5rem;
+  max-height: auto;
+  @include sm {
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+    margin: 0 10px 40px 10px;
+  }
+  @include md {
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+    margin: 0 10px 20px 10px;
+  }
+}
+
+// end footer

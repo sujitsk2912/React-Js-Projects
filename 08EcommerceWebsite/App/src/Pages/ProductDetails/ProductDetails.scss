@@ -1,0 +1,50 @@
+@import "/public/css-configs/mixins.scss";
+
+// product details
+
+.product-data {
+  padding: 10px 20px;
+}
+
+@include sm {
+  .product-image {
+    height: auto !important;
+    width: auto !important;
+  }
+}
+@include md {
+  .product-image {
+    height: auto !important;
+    width: auto !important;
+  }
+}
+@include lg {
+  .product-image {
+    height: auto !important;
+    width: auto !important;
+  }
+}
+
+@include xl {
+  .product-image {
+    height: auto !important;
+    width: 28rem !important;
+  }
+}
+.share-icons {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+}
+.share-icons i {
+  color: rgb(90, 89, 89);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  &:hover {
+    color: black;
+  }
+}
+
+// end product details

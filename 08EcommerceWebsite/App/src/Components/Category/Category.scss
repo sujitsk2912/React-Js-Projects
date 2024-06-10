@@ -1,0 +1,38 @@
+@import "/public/css-configs/mixins.scss";
+
+// product category
+
+.product-title {
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 3px;
+  border-bottom: 4px solid #940bf0;
+  left: 0;
+  white-space: nowrap;
+  bottom: 0;
+  width: 4rem;
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  place-items: center;
+}
+
+.product-card {
+  margin: 30px 0;
+}
+.product-img {
+  cursor: pointer;
+  transition: transform 0.2s linear;
+}
+
+.product-img:hover {
+  transform: scale(1.1);
+}
+
+// end  product category

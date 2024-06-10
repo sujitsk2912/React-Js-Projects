@@ -1,0 +1,42 @@
+@import "/public/css-configs/mixins.scss";
+
+/* Header section */
+
+.sticky-header {
+  position: sticky !important;
+  top: 0;
+  animation: stickyHeader 0.7s ease forwards;
+  z-index: 999;
+}
+
+@keyframes stickyHeader {
+  0% {
+    transform: translateY(-60px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.nav-links {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px; /* Add padding to create space for the border */
+}
+
+.nav-links::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px; /* Border height */
+  background-color: #940bf0; /* Border color */
+  transition: width 0.3s ease-in-out; /* Adjust the transition timing */
+}
+
+.nav-links:hover::after {
+  width: 100%;
+}
+
+/* end header */

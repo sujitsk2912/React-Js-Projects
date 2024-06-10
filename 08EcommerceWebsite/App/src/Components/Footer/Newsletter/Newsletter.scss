@@ -1,0 +1,25 @@
+@import "/public/css-configs/mixins.scss";
+
+/* New Letter section */
+
+.newsletter-section {
+  background-image: url("/src/assets/newsletter-bg.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 350px;
+}
+
+.user-accounts span {
+  background-color: rgb(33, 33, 33);
+  color: white;
+  padding: 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  &:hover {
+    background-color: rgb(87, 13, 156);
+  }
+}
+
+/* end New Letter section */

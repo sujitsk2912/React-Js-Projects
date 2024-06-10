@@ -1,0 +1,31 @@
+@import "/public/css-configs/mixins.scss";
+
+// product category section
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  place-items: center;
+}
+@include sm {
+  .products-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+  }
+}
+
+.product-category {
+  margin: 20px 0;
+  // w-[250px] h-auto
+}
+
+.product-category-img {
+  cursor: pointer;
+  transition: transform 0.2s linear;
+}
+
+.product-category-img:hover {
+  transform: scale(1.1);
+}
+// end product category section
