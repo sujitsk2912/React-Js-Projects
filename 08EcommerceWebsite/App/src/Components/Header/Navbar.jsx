@@ -1,18 +1,19 @@
-import { Menu, X, ChevronDown, ChevronRight, Link } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { IoSearch } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa6";
 import { RiShoppingCartLine } from "react-icons/ri";
 import "./Navbar.scss";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CartDrawer from "../../Pages/Cart/CartDrawer/CartDrawer";
 import SearchProducts from "../../Pages/SearchProducts/SearchProducts";
+// import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const menuItems = [
     {
       name: "Home",
-      href: "#",
+      href: "/",
     },
     {
       name: "About",
@@ -23,6 +24,8 @@ const Navbar = () => {
       href: "#",
     },
   ];
+
+  // const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -71,10 +74,12 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="inline-flex text-2xl items-center space-x-2 uppercase">
-            <span className="font-semibold">E-store</span>
+            <span className="font-semibold">
+              <a href="/">E-store</a>
+            </span>
           </div>
           <div className=" inline-flex justify-center items-center gap-4 text-2xl ">
-            <span onClick={() => setShowSearch(true)}>
+            <span onClick={() => {}}>
               <IoSearch className="cursor-pointer" />
             </span>
             <span>

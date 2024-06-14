@@ -1,11 +1,16 @@
 import { IoClose } from "react-icons/io5";
-import { LuSearchX } from "react-icons/lu";
+// import { LuSearchX } from "react-icons/lu";
 
 import "./SearchProducts.scss";
 import ProductList from "./ProductList";
 import "./ProductList.scss";
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
 
 const SearchProducts = () => {
+  // const [isOpen, setIsOpen] = useState(false);
+  // const navigate = useNavigate();
+
   return (
     <div className="search-modal h-screen w-full ">
       <div className="flex flex-row w-[90%] m-auto justify-center items-center border-b-2 p-2">
@@ -15,7 +20,7 @@ const SearchProducts = () => {
           className="text-black text-3xl border-none outline-none font-semibold w-full text-center max-sm:h-10  max-sm:text-sm h-16 focus:ring-0  max-md:text-md max-md:h-14 uppercase px-4"
         />
         <IoClose
-          onClick={false}
+          // onClick={() => navigate("/")}
           className="text-4xl max-sm:text-2xl max-md:text-3xl cursor-pointer"
         />
       </div>

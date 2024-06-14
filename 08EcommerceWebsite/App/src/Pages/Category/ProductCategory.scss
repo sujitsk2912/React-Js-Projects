@@ -7,10 +7,11 @@
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   place-items: center;
 }
+
 @include sm {
   .products-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     place-items: center;
   }
 }

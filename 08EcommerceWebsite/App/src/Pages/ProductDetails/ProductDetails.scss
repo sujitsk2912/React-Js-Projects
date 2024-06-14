@@ -9,19 +9,31 @@
 @include sm {
   .product-image {
     height: auto !important;
-    width: auto !important;
+    width: 18rem !important;
+  }
+  .product-details {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
   }
 }
 @include md {
   .product-image {
     height: auto !important;
-    width: auto !important;
+    width: 24rem !important;
+  }
+  .product-details {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
   }
 }
 @include lg {
   .product-image {
     height: auto !important;
-    width: auto !important;
+    width: 26rem !important;
+  }
+  .product-details {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
   }
 }
 
@@ -29,6 +41,10 @@
   .product-image {
     height: auto !important;
     width: 28rem !important;
+  }
+  .product-details {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
   }
 }
 .share-icons {
