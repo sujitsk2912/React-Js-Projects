@@ -35,7 +35,6 @@ const HomePage = () => {
   return (
     <AppContext>
       <HeroContainer />
-      {/* <Category categories={categories} /> */}
       <ProductCategory categories={categories} />
       <ProductCard products={products} />
     </AppContext>

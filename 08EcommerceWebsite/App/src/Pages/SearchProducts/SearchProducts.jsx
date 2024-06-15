@@ -16,6 +16,8 @@ const SearchProducts = () => {
       <div className="flex flex-row w-[90%] m-auto justify-center items-center border-b-2 p-2">
         <input
           type="search"
+          autoFocus
+          // onChange={}
           placeholder="SEARCH FOR PRODUCTS"
           className="text-black text-3xl border-none outline-none font-semibold w-full text-center max-sm:h-10  max-sm:text-sm h-16 focus:ring-0  max-md:text-md max-md:h-14 uppercase px-4"
         />
@@ -36,10 +38,6 @@ const SearchProducts = () => {
           Product not found !
         </div> */}
         <div>
-          <ProductList />
-          <ProductList />
-          <ProductList />
-          <ProductList />
           <ProductList />
         </div>
       </div>

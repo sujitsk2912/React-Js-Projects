@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import "./Category.scss";
 
 const Category = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Category = () => {
       <div className="mb-4">
         <h1 className="product-title">category</h1>
       </div>
-      <div className="products-container">
+      <div className="products-container ">
         {data?.data?.map((item) => (
           <div
             key={item.id}

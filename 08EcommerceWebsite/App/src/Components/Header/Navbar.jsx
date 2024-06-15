@@ -4,12 +4,14 @@ import { FaRegHeart } from "react-icons/fa6";
 import { RiShoppingCartLine } from "react-icons/ri";
 import "./Navbar.scss";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CartDrawer from "../../Pages/Cart/CartDrawer/CartDrawer";
 import SearchProducts from "../../Pages/SearchProducts/SearchProducts";
+import { Context } from "../../utils/context";
 // import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const { cartCount } = useContext(Context);
   const menuItems = [
     {
       name: "Home",
@@ -90,9 +92,11 @@ const Navbar = () => {
               onClick={() => setShowCart(true)}
             >
               <RiShoppingCartLine className="cursor-pointer" />
-              <span className="absolute text-center -top-2 left-3 text-xs rounded-[15px] p-[2.5px] min-w-[20px] bg-violet-600">
-                5
-              </span>
+              {!!cartCount && (
+                <span className="absolute text-center -top-2 left-3 text-xs rounded-[15px] p-[2.5px] min-w-[20px] bg-violet-600">
+                  {cartCount}
+                </span>
+              )}
             </span>
           </div>
         </nav>

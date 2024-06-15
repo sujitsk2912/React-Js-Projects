@@ -13,7 +13,7 @@ const RelatedProducts = ({ productId, categoryId }) => {
       <div className="mb-4 ">
         <h1 className="product-title">Related products</h1>
       </div>
-      <div className="products-container flex justify-center gap-14">
+      <div className="products-container">
         {data?.data?.map((item) => (
           <div
             key={item.id}

@@ -7,7 +7,6 @@ import AppContext from "./utils/context.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AppContext>
-      {/* <Navbar /> */}
       <App />
     </AppContext>
   </React.StrictMode>

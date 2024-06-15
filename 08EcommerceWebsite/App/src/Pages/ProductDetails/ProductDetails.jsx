@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./ProductDetails.scss";
 import {
   FaCartPlus,
@@ -11,11 +11,13 @@ import {
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
+import { Context } from "../../utils/context";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
-  // console.log(categoryId);
+  const { handleAddToCart } = useContext(Context);
+  // console.log(data.data[0]);
   // items.attributes.categories.data[0].id;
   const [value, setValue] = useState(1);
 
@@ -114,6 +116,11 @@ const ProductDetails = () => {
                 </div>
                 <button
                   type="button"
+                  onClick={() => {
+                    handleAddToCart(data?.data[0], value);
+                    setValue(1);
+                    setCartCount();
+                  }}
                   className="inline-flex items-center tracking-wider rounded-md bg-violet-700 px-3 py-2 text-sm font-semibold uppercase text-white hover:bg-violet-800"
                 >
                   <FaCartPlus className="text-lg mr-2" />

@@ -9,7 +9,7 @@ const ProductCard = ({ products }) => {
       <div className="mb-4">
         <h1 className="product-title">popular products</h1>
       </div>
-      <div className="products-container">
+      <div className="products-container justify-start">
         {products?.map((item) => (
           <div
             key={item.id}

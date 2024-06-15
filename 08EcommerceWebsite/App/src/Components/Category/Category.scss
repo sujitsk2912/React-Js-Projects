@@ -21,6 +21,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   place-items: center;
+  // justify-content: start;
 }
 
 .product-card {
