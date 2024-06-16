@@ -1,12 +1,8 @@
-.search-modal {
-  transform: translateY(100%);
-  animation: slideSearchWindow 0.5s ease forwards;
-}
-@keyframes slideSearchWindow {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
+.product-container {
+  height: 100vh;
+  width: 100%;
+  overflow-y: scroll !important;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

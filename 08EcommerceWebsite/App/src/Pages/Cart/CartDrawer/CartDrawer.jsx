@@ -4,8 +4,10 @@ import "./CartDrawer.scss";
 import CartItem from "../CartItem/CartItem";
 import { useContext, useState } from "react";
 import { Context } from "../../../utils/context";
+import { useNavigate } from "react-router-dom";
 
 const CartDrawer = ({ setShowCart }) => {
+  const navigate = useNavigate();
   const { cartCount, cartSubTotal } = useContext(Context);
   return (
     <div className="drawer-panel">
@@ -53,12 +55,14 @@ const CartDrawer = ({ setShowCart }) => {
             <span className="text-gray-800 text-md">
               No products in the cart.
             </span>
-            {/* <button
+
+            <button
               type="button"
+              onClick={() => navigate("/")}
               className="inline-flex items-center rounded-md bg-violet-700 px-3 py-2 text-sm font-medium text-white hover:bg-violet-800"
             >
               Return To Cart
-            </button> */}
+            </button>
           </div>
         ) : (
           <div className="h-[93%] flex flex-col justify-between mt-1  ">

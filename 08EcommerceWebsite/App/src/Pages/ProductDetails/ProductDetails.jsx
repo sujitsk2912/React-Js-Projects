@@ -8,17 +8,22 @@ import {
   FaLinkedinIn,
   FaPinterestP,
 } from "react-icons/fa";
+import { CiHeart } from "react-icons/ci";
+
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
 import { Context } from "../../utils/context";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
-  const { handleAddToCart } = useContext(Context);
-  // console.log(data.data[0]);
-  // items.attributes.categories.data[0].id;
+  const { handleAddToCart, handleAddToWishlist } = useContext(Context);
+
+  const addToCart = () => toast.success("Product added to cart");
+  const addToWishlist = () => toast.success("Product added to wishlist");
+
   const [value, setValue] = useState(1);
 
   const handleDecrement = () => {
@@ -29,7 +34,7 @@ const ProductDetails = () => {
     setValue((prevValue) => prevValue + 1);
   };
 
-  if (!data) return;
+  if (!data) return null;
 
   return (
     <>
@@ -37,9 +42,9 @@ const ProductDetails = () => {
         {data?.data?.map((items) => (
           <div
             key={items.id}
-            className="product-details  max-w-[1040px] m-auto grid grid-cols-2 max-lg:grid-cols-1"
+            className="product-details max-w-[1040px] m-auto grid grid-cols-2 max-lg:grid-cols-1"
           >
-            <div className="product-image flex m-auto justify-center items-center bg-gray-100 h-[30rem] w-[30rem] ">
+            <div className="product-image flex m-auto justify-center items-center bg-gray-100 h-[30rem] w-[30rem]">
               <img
                 src={
                   import.meta.env.VITE_APP_DEV_URL +
@@ -55,7 +60,7 @@ const ProductDetails = () => {
               <p className="price text-xl font-semibold">
                 ₹ {items.attributes.price}
               </p>
-              <p className="prduct-description text-sm text-gray-600">
+              <p className="product-description text-sm text-gray-600">
                 {items.attributes.description}
               </p>
               <div className="flex items-center gap-4 mt-4">
@@ -66,7 +71,7 @@ const ProductDetails = () => {
                   <div className="flex items-center gap-x-2">
                     <button
                       type="button"
-                      className="border-r size-8 inline-flex justify-center  items-center gap-x-2 text-sm font-medium   bg-white text-gray-800 shadow-smdisabled:opacity-50 disabled:pointer-events-none  hover:bg-neutral-800 hover:text-white"
+                      className="border-r size-8 inline-flex justify-center items-center gap-x-2 text-sm font-medium bg-white text-gray-800 shadow-sm disabled:opacity-50 disabled:pointer-events-none hover:bg-neutral-800 hover:text-white"
                       onClick={handleDecrement}
                       disabled={value === 0}
                     >
@@ -86,14 +91,14 @@ const ProductDetails = () => {
                       </svg>
                     </button>
                     <input
-                      className="p-0 w-6 bg-transparent border-0 text-gray-800 text-md font-medium text-center focus:ring-0 "
+                      className="p-0 w-6 bg-transparent border-0 text-gray-800 text-md font-medium text-center focus:ring-0"
                       type="text"
                       value={value}
                       readOnly
                     />
                     <button
                       type="button"
-                      className="border-l size-8 inline-flex justify-center  items-center gap-x-2 text-sm font-medium   bg-white text-gray-800 shadow-smdisabled:opacity-50 disabled:pointer-events-none  hover:bg-neutral-800 hover:text-white"
+                      className="border-l size-8 inline-flex justify-center items-center gap-x-2 text-sm font-medium bg-white text-gray-800 shadow-sm disabled:opacity-50 disabled:pointer-events-none hover:bg-neutral-800 hover:text-white"
                       onClick={handleIncrement}
                     >
                       <svg
@@ -117,14 +122,25 @@ const ProductDetails = () => {
                 <button
                   type="button"
                   onClick={() => {
-                    handleAddToCart(data?.data[0], value);
+                    handleAddToCart(data?.data[0]);
                     setValue(1);
-                    setCartCount();
+                    addToCart();
                   }}
                   className="inline-flex items-center tracking-wider rounded-md bg-violet-700 px-3 py-2 text-sm font-semibold uppercase text-white hover:bg-violet-800"
                 >
                   <FaCartPlus className="text-lg mr-2" />
                   Add To Cart
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleAddToWishlist(data?.data[0], value);
+                    addToWishlist();
+                  }}
+                  className="inline-flex items-center tracking-wider rounded-md bg-transparent px-3 py-2 text-sm font-semibold uppercase border border-gray-300 text-black hover:border-black"
+                >
+                  <CiHeart className="text-xl mr-2" />
+                  Wishlist
                 </button>
               </div>
               <hr />

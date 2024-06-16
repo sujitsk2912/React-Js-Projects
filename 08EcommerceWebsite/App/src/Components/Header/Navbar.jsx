@@ -8,26 +8,26 @@ import { useContext, useEffect, useState } from "react";
 import CartDrawer from "../../Pages/Cart/CartDrawer/CartDrawer";
 import SearchProducts from "../../Pages/SearchProducts/SearchProducts";
 import { Context } from "../../utils/context";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { cartCount } = useContext(Context);
+  const { wishlistCount } = useContext(Context);
   const menuItems = [
     {
       name: "Home",
-      href: "/",
+      navigate: "/",
     },
     {
       name: "About",
-      href: "#",
+      navigate: "#",
     },
     {
       name: "Categories",
-      href: "#",
+      navigate: "#",
     },
   ];
-
-  // const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -65,27 +65,42 @@ const Navbar = () => {
             <ul className=" inline-flex space-x-8 ">
               {menuItems.map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className="inline-flex items-center text-sm text-white font-medium uppercase nav-links"
+                  <p
+                    onClick={() => {
+                      navigate(`${item.navigate}`);
+                    }}
+                    className="inline-flex items-center text-sm text-white font-medium uppercase nav-links cursor-pointer"
                   >
                     {item.name}
-                  </a>
+                  </p>
                 </li>
               ))}
             </ul>
           </div>
           <div className="inline-flex text-2xl items-center space-x-2 uppercase">
-            <span className="font-semibold">
-              <a href="/">E-store</a>
+            <span
+              className="font-semibold cursor-pointer"
+              onClick={() => navigate("/")}
+            >
+              E-store
             </span>
           </div>
           <div className=" inline-flex justify-center items-center gap-4 text-2xl ">
-            <span onClick={() => {}}>
+            <span
+              href="/searchproducts"
+              onClick={() => {
+                setShowSearch(true);
+              }}
+            >
               <IoSearch className="cursor-pointer" />
             </span>
-            <span>
+            <span className="relative flex items-center justify-center">
               <FaRegHeart className="cursor-pointer" />
+              {!!wishlistCount && (
+                <span className="absolute text-center -top-2 left-3 text-xs rounded-[15px] p-[2.5px] min-w-[20px] bg-violet-600">
+                  {wishlistCount}
+                </span>
+              )}
             </span>
             <span
               className="relative flex items-center justify-center"

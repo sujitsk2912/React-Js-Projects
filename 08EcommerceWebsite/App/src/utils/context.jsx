@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-// import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export const Context = createContext();
 
@@ -8,12 +8,13 @@ const AppContext = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
+  const [wishlistCount, setWishlistCount] = useState(0);
   const [cartSubTotal, setCartSubTotal] = useState(0);
-  // const location = useLocation();
+  const location = useLocation();
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, [location]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   useEffect(() => {
     let count = 0;
@@ -39,6 +40,13 @@ const AppContext = ({ children }) => {
     }
 
     setCartItems(items);
+  };
+
+  const handleAddToWishlist = (product) => {
+    console.log(product);
+    // let items = [...cartItems];
+    // items = items.filter((p) => p.id !== product.id);
+    // setCartItems(items);
   };
 
   const handleRemoveFromCart = (product) => {
@@ -71,9 +79,12 @@ const AppContext = ({ children }) => {
         setCartItems,
         cartCount,
         setCartCount,
+        wishlistCount,
+        setWishlistCount,
         cartSubTotal,
         setCartSubTotal,
         handleAddToCart,
+        handleAddToWishlist,
         handleRemoveFromCart,
         handleCartProductQty,
       }}
