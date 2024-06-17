@@ -18,3 +18,10 @@ export const fetchDataFromApi = async (URL) => {
     return error;
   }
 };
+
+export const makePaymentRequest = Axios.create({
+  baseURL: import.meta.env.VITE_APP_DEV_URL,
+  headers: {
+    Authorization: "bearer " + import.meta.env.VITE_APP_STRIPE_APP_KEY,
+  },
+});

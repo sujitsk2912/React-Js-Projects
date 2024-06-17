@@ -2,13 +2,35 @@ import { Drawer, Typography, IconButton } from "@material-tailwind/react";
 import { BsCartX } from "react-icons/bs";
 import "./CartDrawer.scss";
 import CartItem from "../CartItem/CartItem";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Context } from "../../../utils/context";
+import { makePaymentRequest } from "../../../utils/api";
 import { useNavigate } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
 
 const CartDrawer = ({ setShowCart }) => {
+  const { cartItems, cartCount, cartSubTotal } = useContext(Context);
+  console.log(cartItems);
   const navigate = useNavigate();
-  const { cartCount, cartSubTotal } = useContext(Context);
+
+  const stripePromise = loadStripe(
+    import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY
+  );
+
+  const handlePayment = async () => {
+    try {
+      const stripe = await stripePromise;
+      const res = await makePaymentRequest.post("/api/orders", {
+        products: cartItems,
+      });
+      await stripe.redirectToCheckout({
+        sessionId: res.data.stripeSession.id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="drawer-panel">
       <div className="opacity-layer"></div>
@@ -81,6 +103,7 @@ const CartDrawer = ({ setShowCart }) => {
               </div>
               <hr className="border-gray-300" />
               <button
+                onClick={handlePayment}
                 type="button"
                 className="inline-flex items-center tracking-wider justify-center rounded-md bg-violet-700 px-3 py-2 text-sm font-medium text-white hover:bg-violet-800 uppercase mt-1"
               >
