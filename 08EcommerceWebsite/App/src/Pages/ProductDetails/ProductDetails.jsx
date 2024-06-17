@@ -19,11 +19,11 @@ import { toast } from "react-toastify";
 const ProductDetails = () => {
   const { id } = useParams();
   const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
-  const { handleAddToCart, handleAddToWishlist } = useContext(Context);
 
   const addToCart = () => toast.success("Product added to cart");
   const addToWishlist = () => toast.success("Product added to wishlist");
 
+  const { handleAddToCart } = useContext(Context);
   const [value, setValue] = useState(1);
 
   const handleDecrement = () => {
@@ -63,78 +63,81 @@ const ProductDetails = () => {
               <p className="product-description text-sm text-gray-600">
                 {items.attributes.description}
               </p>
-              <div className="flex items-center gap-4 mt-4">
-                <div
-                  className="inline-block h-fit bg-white border border-gray-300 w-fit"
-                  data-hs-input-number=""
-                >
-                  <div className="flex items-center gap-x-2">
-                    <button
-                      type="button"
-                      className="border-r size-8 inline-flex justify-center items-center gap-x-2 text-sm font-medium bg-white text-gray-800 shadow-sm disabled:opacity-50 disabled:pointer-events-none hover:bg-neutral-800 hover:text-white"
-                      onClick={handleDecrement}
-                      disabled={value === 0}
-                    >
-                      <svg
-                        className="flex-shrink-0 size-3.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+              <div className="flex items-center max-sm:flex-col max-sm:items-start gap-4 mt-4">
+                <div className="flex items-center gap-4">
+                  <div
+                    className="inline-block h-fit bg-white border border-gray-300 w-fit"
+                    data-hs-input-number=""
+                  >
+                    <div className="flex items-center gap-x-2">
+                      <button
+                        type="button"
+                        className="border-r size-8 inline-flex justify-center items-center gap-x-2 text-sm font-medium bg-white text-gray-800 shadow-sm disabled:opacity-50 disabled:pointer-events-none hover:bg-neutral-800 hover:text-white"
+                        onClick={handleDecrement}
+                        disabled={value === 0}
                       >
-                        <path d="M5 12h14"></path>
-                      </svg>
-                    </button>
-                    <input
-                      className="p-0 w-6 bg-transparent border-0 text-gray-800 text-md font-medium text-center focus:ring-0"
-                      type="text"
-                      value={value}
-                      readOnly
-                    />
-                    <button
-                      type="button"
-                      className="border-l size-8 inline-flex justify-center items-center gap-x-2 text-sm font-medium bg-white text-gray-800 shadow-sm disabled:opacity-50 disabled:pointer-events-none hover:bg-neutral-800 hover:text-white"
-                      onClick={handleIncrement}
-                    >
-                      <svg
-                        className="flex-shrink-0 size-3.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                        <svg
+                          className="flex-shrink-0 size-3.5"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M5 12h14"></path>
+                        </svg>
+                      </button>
+                      <input
+                        className="p-0 w-6 bg-transparent border-0 text-gray-800 text-md font-medium text-center focus:ring-0"
+                        type="text"
+                        value={value}
+                        readOnly
+                      />
+                      <button
+                        type="button"
+                        className="border-l size-8 inline-flex justify-center items-center gap-x-2 text-sm font-medium bg-white text-gray-800 shadow-sm disabled:opacity-50 disabled:pointer-events-none hover:bg-neutral-800 hover:text-white"
+                        onClick={handleIncrement}
                       >
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5v14"></path>
-                      </svg>
-                    </button>
+                        <svg
+                          className="flex-shrink-0 size-3.5"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M5 12h14"></path>
+                          <path d="M12 5v14"></path>
+                        </svg>
+                      </button>
+                    </div>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleAddToCart(data?.data[0], value);
+                      console.log(data?.data[0]);
+                      setValue(1);
+                      addToCart();
+                    }}
+                    className="inline-flex items-center tracking-wider rounded-md bg-violet-700 px-3 py-2 text-sm font-semibold uppercase text-white hover:bg-violet-800"
+                  >
+                    <FaCartPlus className="text-lg mr-2" />
+                    Add To Cart
+                  </button>
                 </div>
                 <button
                   type="button"
                   onClick={() => {
-                    handleAddToCart(data?.data[0]);
-                    setValue(1);
-                    addToCart();
-                  }}
-                  className="inline-flex items-center tracking-wider rounded-md bg-violet-700 px-3 py-2 text-sm font-semibold uppercase text-white hover:bg-violet-800"
-                >
-                  <FaCartPlus className="text-lg mr-2" />
-                  Add To Cart
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    handleAddToWishlist(data?.data[0], value);
+                    // handleAddToWishlist(data?.data[0], value);
                     addToWishlist();
                   }}
                   className="inline-flex items-center tracking-wider rounded-md bg-transparent px-3 py-2 text-sm font-semibold uppercase border border-gray-300 text-black hover:border-black"

@@ -8,7 +8,6 @@ const AppContext = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
-  const [wishlistCount, setWishlistCount] = useState(0);
   const [cartSubTotal, setCartSubTotal] = useState(0);
   const location = useLocation();
 
@@ -42,13 +41,6 @@ const AppContext = ({ children }) => {
     setCartItems(items);
   };
 
-  const handleAddToWishlist = (product) => {
-    console.log(product);
-    // let items = [...cartItems];
-    // items = items.filter((p) => p.id !== product.id);
-    // setCartItems(items);
-  };
-
   const handleRemoveFromCart = (product) => {
     let items = [...cartItems];
     items = items.filter((p) => p.id !== product.id);
@@ -79,12 +71,9 @@ const AppContext = ({ children }) => {
         setCartItems,
         cartCount,
         setCartCount,
-        wishlistCount,
-        setWishlistCount,
         cartSubTotal,
         setCartSubTotal,
         handleAddToCart,
-        handleAddToWishlist,
         handleRemoveFromCart,
         handleCartProductQty,
       }}

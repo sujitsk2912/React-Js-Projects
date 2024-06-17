@@ -58,7 +58,9 @@ const CartDrawer = ({ setShowCart }) => {
 
             <button
               type="button"
-              onClick={() => navigate("/")}
+              onClick={() => {
+                navigate("/"), setShowCart(false);
+              }}
               className="inline-flex items-center rounded-md bg-violet-700 px-3 py-2 text-sm font-medium text-white hover:bg-violet-800"
             >
               Return To Cart

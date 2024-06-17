@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
   const { cartCount } = useContext(Context);
-  const { wishlistCount } = useContext(Context);
+  // const { wishlistCount } = useContext(Context);
   const menuItems = [
     {
       name: "Home",
@@ -50,7 +50,6 @@ const Navbar = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
   }, []);
-  // console.log(showCart);
 
   return (
     <>
@@ -96,11 +95,11 @@ const Navbar = () => {
             </span>
             <span className="relative flex items-center justify-center">
               <FaRegHeart className="cursor-pointer" />
-              {!!wishlistCount && (
+              {/* {!!wishlistCount && (
                 <span className="absolute text-center -top-2 left-3 text-xs rounded-[15px] p-[2.5px] min-w-[20px] bg-violet-600">
                   {wishlistCount}
                 </span>
-              )}
+              )} */}
             </span>
             <span
               className="relative flex items-center justify-center"
