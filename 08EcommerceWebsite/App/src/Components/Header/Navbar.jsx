@@ -9,11 +9,15 @@ import CartDrawer from "../../Pages/Cart/CartDrawer/CartDrawer";
 import SearchProducts from "../../Pages/SearchProducts/SearchProducts";
 import { Context } from "../../utils/context";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { cartCount } = useContext(Context);
   // const { wishlistCount } = useContext(Context);
+
+  const { loginWithRedirect, logout } = useAuth0();
+
   const menuItems = [
     {
       name: "Home",
@@ -113,6 +117,23 @@ const Navbar = () => {
               )}
             </span>
           </div>
+          <p className="hidden sm:block">
+            Welcome, <span>Sujit</span>
+          </p>
+          <button
+            type="button"
+            onClick={() => loginWithRedirect()}
+            className="hidden lg:block rounded-md border border-white px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white hover:bg-white hover:text-black"
+          >
+            Log In
+          </button>
+          <button
+            type="button"
+            onClick={() => logout({ returnTo: window.location.origin })}
+            className="hidden lg:block rounded-md border border-white px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white hover:bg-white hover:text-black"
+          >
+            Log Out
+          </button>
         </nav>
         <div className="absolute top-[1.1rem] ml-2 lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />

@@ -10,7 +10,6 @@ import { loadStripe } from "@stripe/stripe-js";
 
 const CartDrawer = ({ setShowCart }) => {
   const { cartItems, cartCount, cartSubTotal } = useContext(Context);
-  console.log(cartItems);
   const navigate = useNavigate();
 
   const stripePromise = loadStripe(
@@ -23,6 +22,7 @@ const CartDrawer = ({ setShowCart }) => {
       const res = await makePaymentRequest.post("/api/orders", {
         products: cartItems,
       });
+      console.log(res);
       await stripe.redirectToCheckout({
         sessionId: res.data.stripeSession.id,
       });

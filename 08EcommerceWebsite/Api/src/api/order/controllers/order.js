@@ -1,4 +1,5 @@
 ("use strict");
+
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 /**
  * order controller
@@ -44,7 +45,8 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
 
       return { stripeSession: session };
     } catch (error) {
-      ctx.response.status = 500;
+      // ctx.response.status = 500;
+      console.log(error);
       return { error };
     }
   },
