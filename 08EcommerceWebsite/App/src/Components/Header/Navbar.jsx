@@ -120,6 +120,7 @@ const Navbar = () => {
           <p className="hidden sm:block">
             Welcome, <span>Sujit</span>
           </p>
+
           <button
             type="button"
             onClick={() => loginWithRedirect()}

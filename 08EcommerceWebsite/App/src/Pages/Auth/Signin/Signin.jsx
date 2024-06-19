@@ -1,32 +1,32 @@
 import { Field, Formik, Form, ErrorMessage } from "formik";
-// import { useMutation } from "react-query";
+import { useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import { object, string } from "yup";
-// import { signinUser } from "../../../api/query/userQuery";
+import { signinUser } from "../../../api/query/userQuery";
 import { Button, useToast } from "@chakra-ui/react";
 // import useAuth from "../../../hooks/useAuth";
 
 const Signin = () => {
   // const { login } = useAuth();
-  // const toast = useToast();
+  const toast = useToast();
 
-  // const { mutate, isLoading } = useMutation({
-  //   mutationKey: ["signin"],
-  //   mutationFn: signinUser,
-  //   onSuccess: (data) => {
-  //     const { token } = data;
-  //     if (token) {
-  //       login(token);
-  //     }
-  //   },
-  //   onError: (error) => {
-  //     toast({
-  //       title: "Signin Error",
-  //       description: error.message,
-  //       status: "error",
-  //     });
-  //   },
-  // });
+  const { mutate, isLoading } = useMutation({
+    mutationKey: ["signin"],
+    mutationFn: signinUser,
+    onSuccess: (data) => {
+      const { token } = data;
+      if (token) {
+        // login(token);
+      }
+    },
+    onError: (error) => {
+      toast({
+        title: "Signin Error",
+        description: error.message,
+        status: "error",
+      });
+    },
+  });
 
   const signinValidationSchema = object({
     email: string()
@@ -55,7 +55,7 @@ const Signin = () => {
               password: "",
             }}
             onSubmit={async (values) => {
-              // mutate(values);
+              mutate(values);
             }}
             validationSchema={signinValidationSchema}
           >
@@ -130,7 +130,7 @@ const Signin = () => {
                 </div>
 
                 <Button
-                  // isLoading={isLoading}
+                  isLoading={isLoading}
                   type="submit"
                   height="10"
                   width="full"

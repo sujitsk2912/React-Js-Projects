@@ -63,13 +63,13 @@ const ProductDetails = () => {
               <p className="product-description text-sm text-gray-600">
                 {items.attributes.description}
               </p>
-              <div className="flex items-center max-sm:flex-col max-sm:items-start gap-4 mt-4">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col justify-center items-start max-sm:flex-col max-sm:items-start gap-4 mt-4">
+                <div className="flex items-start gap-5 max-sm:flex-col ">
                   <div
                     className="inline-block h-fit bg-white border border-gray-300 w-fit"
                     data-hs-input-number=""
                   >
-                    <div className="flex items-center gap-x-2">
+                    <div className="flex items-center gap-x-2 ">
                       <button
                         type="button"
                         className="border-r size-8 inline-flex justify-center items-center gap-x-2 text-sm font-medium bg-white text-gray-800 shadow-sm disabled:opacity-50 disabled:pointer-events-none hover:bg-neutral-800 hover:text-white"
@@ -120,19 +120,33 @@ const ProductDetails = () => {
                       </button>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      handleAddToCart(data?.data[0], value);
-                      console.log(data?.data[0]);
-                      setValue(1);
-                      addToCart();
-                    }}
-                    className="inline-flex items-center tracking-wider rounded-md bg-violet-700 px-3 py-2 text-sm font-semibold uppercase text-white hover:bg-violet-800"
-                  >
-                    <FaCartPlus className="text-lg mr-2" />
-                    Add To Cart
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleAddToCart(data?.data[0], value);
+                        console.log(data?.data[0]);
+                        setValue(1);
+                        addToCart();
+                      }}
+                      className="btn inline-flex items-center tracking-wider   bg-black  text-sm font-semibold  text-white "
+                    >
+                      {/* <FaCartPlus className="text-lg mr-2" /> */}
+                      Add To cart
+                    </button>
+                    {/* <button
+                      type="button"
+                      onClick={() => {
+                        // handleAddToCart(data?.data[0], value);
+                        // console.log(data?.data[0]);
+                        // setValue(1);
+                        // addToCart();
+                      }}
+                      className="btn inline-flex items-center tracking-wider bg-white text-sm font-semibold  text-black outline-none border-2 border-black "
+                    >
+                      Buy Now
+                    </button> */}
+                  </div>
                 </div>
                 <button
                   type="button"
@@ -140,10 +154,10 @@ const ProductDetails = () => {
                     // handleAddToWishlist(data?.data[0], value);
                     addToWishlist();
                   }}
-                  className="inline-flex items-center tracking-wider rounded-md bg-transparent px-3 py-2 text-sm font-semibold uppercase border border-gray-300 text-black hover:border-black"
+                  className="inline-flex items-center tracking-wider rounded-md bg-transparent px-3 py-2 text-sm font-medium  text-black justify-center gap-1 "
                 >
+                  Add to favorite
                   <CiHeart className="text-xl mr-2" />
-                  Wishlist
                 </button>
               </div>
               <hr />

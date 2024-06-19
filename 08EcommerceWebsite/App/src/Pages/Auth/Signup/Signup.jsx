@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, ref, string } from "yup";
-// import { signupUser } from "../../../api/query/userQuery";
+import { signupUser } from "../../../api/query/userQuery";
 import { Button, useToast } from "@chakra-ui/react";
-// import { useMutation } from "react-query";
+import { useMutation } from "react-query";
 // import { useState } from "react";
 
 const Signup = () => {
@@ -11,23 +11,23 @@ const Signup = () => {
   const navigate = useNavigate();
   const toast = useToast();
 
-  // const { mutate, isLoading } = useMutation({
-  //   mutationKey: ["signup"],
-  //   mutationFn: signupUser,
-  //   onSuccess: (data) => {
-  //     if (email != "") {
-  //       navigate(`/send-verification-mail/${email}`);
-  //     }
-  //   },
-  //   onError: (error) => {
-  //     toast({
-  //       title: "Signup Error",
-  //       description: error.message,
-  //       status: "error",
-  //     });
-  //   },
-  //   enabled: !!email,
-  // });
+  const { mutate, isLoading } = useMutation({
+    mutationKey: ["signup"],
+    mutationFn: signupUser,
+    onSuccess: (data) => {
+      if (email != "") {
+        navigate(`/send-verification-mail/${email}`);
+      }
+    },
+    onError: (error) => {
+      toast({
+        title: "Signup Error",
+        description: error.message,
+        status: "error",
+      });
+    },
+    enabled: !!email,
+  });
 
   const signupValidationSchema = object({
     firstName: string().required("FirstName is required"),
@@ -65,14 +65,14 @@ const Signup = () => {
               repeatPassword: "",
             }}
             onSubmit={(values) => {
-              // setEmail(values.email);
+              setEmail(values.email);
               email = document.getElementById("email").value;
-              // mutate({
-              //   firstName: values.firstName,
-              //   lastName: values.lastName,
-              //   email: values.email,
-              //   password: values.password,
-              // });
+              mutate({
+                firstName: values.firstName,
+                lastName: values.lastName,
+                email: values.email,
+                password: values.password,
+              });
             }}
             validationSchema={signupValidationSchema}
           >
@@ -205,7 +205,7 @@ const Signup = () => {
                 </div>
 
                 <Button
-                  // isLoading={isLoading}
+                  isLoading={isLoading}
                   type="submit"
                   height="10"
                   width="full"
