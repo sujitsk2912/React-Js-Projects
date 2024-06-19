@@ -10,32 +10,29 @@ import AppContext from "./utils/context";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Success from "./Pages/Success/Success";
-import { Auth0Provider } from "@auth0/auth0-react";
+import Signin from "./Pages/Auth/Signin/Signin";
+import Signup from "./Pages/Auth/Signup/Signup";
+import ForgotPassword from "./Pages/Auth/ForgotPassword/ForgotPassword";
 
 function App() {
   return (
     <>
       <ToastContainer position="bottom-center" />
       <BrowserRouter>
-        <Auth0Provider
-          domain="dev-ij7w4kvym5a3b20s.us.auth0.com"
-          clientId="NC2jrTapl0jikLYvLDHIC2VIhhzzWzzT"
-          authorizationParams={{
-            redirect_uri: window.location.origin,
-          }}
-        >
-          <AppContext>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/category/:id" element={<Category />} />
-              <Route path="/product/:id" element={<ProductDetails />} />
-              <Route path="/success" element={<Success />} />
-            </Routes>
-            <Newsletter />
-            <Footer />
-          </AppContext>
-        </Auth0Provider>
+        <AppContext>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/category/:id" element={<Category />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+          </Routes>
+          <Newsletter />
+          <Footer />
+        </AppContext>
       </BrowserRouter>
     </>
   );
