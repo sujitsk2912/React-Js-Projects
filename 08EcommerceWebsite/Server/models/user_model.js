@@ -12,6 +12,7 @@ const userSchema = new mongooes.Schema({
   email: {
     type: String,
     require: true,
+    unquie: true
   },
   password: {
     type: String,
