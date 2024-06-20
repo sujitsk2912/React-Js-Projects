@@ -7,7 +7,7 @@ import { Button, useToast } from "@chakra-ui/react";
 import useAuth from "../../../hooks/useAuth";
 
 const Signin = () => {
-  const { login, setUser } = useAuth();
+  const { login, setUser, setToken } = useAuth();
 
   const toast = useToast();
 
@@ -15,11 +15,14 @@ const Signin = () => {
     mutationKey: ["signin"],
     mutationFn: signinUser,
     onSuccess: (data) => {
-      const { token } = data;
-      if (token) {
-        login(token);
-        setUser(data.firstName);
-      }
+      // const { token } = data;
+      // if (data.token) {
+      login(data.token);
+      setUser(data.firstName);
+      setToken(data.token);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("loggedIn", true);
+      // }
     },
     onError: (error) => {
       toast({

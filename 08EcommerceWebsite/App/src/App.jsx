@@ -32,7 +32,7 @@ import NotFound from "./Components/404-NotFound/NotFound";
 
 function App() {
   const location = useLocation();
-
+  const isLoggedIn = window.localStorage.getItem("loggedIn");
   // Paths where you don't want to show Navbar, Footer, Newsletter, etc.
   const noHeaderFooterPaths = [
     "/signin",
@@ -64,11 +64,7 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={
-                  <ProtectedRoute>
-                    <HomePage />
-                  </ProtectedRoute>
-                }
+                element={<ProtectedRoute>{<HomePage />}</ProtectedRoute>}
               />
               <Route
                 path="/category/:id"

@@ -9,8 +9,6 @@ export default function AuthProvider({ children }) {
   const [cookies, setCookies, removeCookies] = useCookies();
   const login = (tokenStr) => {
     if (tokenStr) {
-      setToken(tokenStr);
-
       const { exp } = jwtDecode(tokenStr);
       if (exp) {
         setCookies("jwt", tokenStr, {
@@ -18,7 +16,6 @@ export default function AuthProvider({ children }) {
           maxAge: exp,
           sameSite: true,
         });
-        console.log(cookies);
       }
       return;
     }
@@ -38,6 +35,7 @@ export default function AuthProvider({ children }) {
         login,
         logout,
         setUser,
+        setToken,
       }}
     >
       {children}

@@ -18,7 +18,6 @@ const Navbar = () => {
   const { cartCount } = useContext(Context);
 
   // const { wishlistCount } = useContext(Context);
-  // console.log(user);
   // const { loginWithRedirect } = useAuth0();
   const menuItems = [
     {
@@ -142,6 +141,8 @@ const Navbar = () => {
                   type="button"
                   onClick={() => {
                     logout({ returnTo: window.location.origin });
+                    window.localStorage.clear();
+                    window.localStorage.href = "/signin";
                     logout;
                   }}
                   className="logout-btn hidden lg:block rounded-md shadow-sm"
