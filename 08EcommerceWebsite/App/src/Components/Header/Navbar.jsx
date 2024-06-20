@@ -13,12 +13,13 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const { logout, user } = useAuth();
   const navigate = useNavigate();
   const { cartCount } = useContext(Context);
-  // const { wishlistCount } = useContext(Context);
 
+  // const { wishlistCount } = useContext(Context);
+  // console.log(user);
   // const { loginWithRedirect } = useAuth0();
-  const { logout } = useAuth();
   const menuItems = [
     {
       name: "Home",
@@ -118,34 +119,45 @@ const Navbar = () => {
               )}
             </span>
           </div>
-          <p className="hidden sm:block">
-            Welcome, <span>Sujit</span>
-          </p>
-          {/* <button
-            type="button"
-            onClick={() => loginWithRedirect()}
-            className="hidden lg:block rounded-md border border-white px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white hover:bg-white hover:text-black"
-          >
-            Log In
-          </button>
-          */}
-          <button
-            type="button"
-            onClick={() => {
-              logout({ returnTo: window.location.origin });
-              logout;
-            }}
-            className="hidden lg:block rounded-md border border-white px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white hover:bg-white hover:text-black"
-          >
-            Log Out
-          </button>{" "}
+          <div className="max-sm:hidden flex items-center gap-1.5">
+            <p className="dropdownMenuLink">
+              Welcome, <span>{user}</span>
+            </p>
+            <div className="dropdown show flex mt-1">
+              <a
+                className="dropdown-toggle"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              ></a>
+
+              <div
+                className="dropdown-menu dropdown-menu-right bg-[#202020] border-0 p-2"
+                aria-labelledby="dropdownMenuLink"
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    logout({ returnTo: window.location.origin });
+                    logout;
+                  }}
+                  className="logout-btn hidden lg:block rounded-md shadow-sm"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
         </nav>
         <div className="absolute top-[1.1rem] ml-2 lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
         </div>
         {isMenuOpen && (
-          <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
-            <div className="divide-y-2 divide-gray-50 rounded-lg bg-[#202020] shadow-lg ring-1 ring-black ring-opacity-5">
+          <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform  transition lg:hidden w-full">
+            <div className="divide-y-2 divide-gray-50  bg-[#202020] shadow-lg ring-1 ring-black ring-opacity-5">
               <div className="px-5 pb-6 pt-5">
                 <div className="flex items-center justify-between">
                   <div className="inline-flex text-2xl items-center space-x-2 uppercase">
@@ -155,7 +167,7 @@ const Navbar = () => {
                     <button
                       type="button"
                       onClick={toggleMenu}
-                      className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                      className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                     >
                       <span className="sr-only">Close menu</span>
                       <X className="h-6 w-6" aria-hidden="true" />
@@ -168,13 +180,23 @@ const Navbar = () => {
                       <a
                         key={item.name}
                         href={item.href}
-                        className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-slate-700 "
+                        className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:text-blue-400 "
                       >
                         <span className="ml-3 text-base font-medium text-white ">
                           {item.name}
                         </span>
                       </a>
                     ))}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        logout({ returnTo: window.location.origin });
+                        logout;
+                      }}
+                      className="logout-btn  rounded-md shadow-sm"
+                    >
+                      Logout
+                    </button>
                   </nav>
                 </div>
               </div>

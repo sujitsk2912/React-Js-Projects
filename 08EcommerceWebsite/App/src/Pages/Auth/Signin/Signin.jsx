@@ -7,7 +7,8 @@ import { Button, useToast } from "@chakra-ui/react";
 import useAuth from "../../../hooks/useAuth";
 
 const Signin = () => {
-  const { login } = useAuth();
+  const { login, setUser } = useAuth();
+
   const toast = useToast();
 
   const { mutate, isLoading } = useMutation({
@@ -17,6 +18,7 @@ const Signin = () => {
       const { token } = data;
       if (token) {
         login(token);
+        setUser(data.firstName);
       }
     },
     onError: (error) => {
@@ -153,14 +155,16 @@ const Signin = () => {
                 >
                   Log In
                 </Button>
-                <div className="mt-4 flex items-center justify-center text-sm font-medium">
-                  <p className="text-gray-600">Don't have an account?</p>
-                  <Link
-                    to={"/signup"}
-                    className="ml-2 text-sm font-medium text-violet-700 cursor-pointer hover:underline"
-                  >
-                    Create Account
-                  </Link>
+                <div className="mt-4 flex items-center justify-center text-center text-sm font-medium   ">
+                  <p className="text-gray-600">
+                    Don't have an account?
+                    <Link
+                      to={"/signup"}
+                      className="ml-2 text-sm font-medium text-violet-700 cursor-pointer hover:underline"
+                    >
+                      Create Account
+                    </Link>
+                  </p>
                 </div>
               </Form>
             }

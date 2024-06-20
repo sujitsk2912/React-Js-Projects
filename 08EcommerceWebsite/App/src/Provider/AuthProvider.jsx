@@ -7,7 +7,6 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [cookies, setCookies, removeCookies] = useCookies();
-
   const login = (tokenStr) => {
     if (tokenStr) {
       setToken(tokenStr);
@@ -19,6 +18,7 @@ export default function AuthProvider({ children }) {
           maxAge: exp,
           sameSite: true,
         });
+        console.log(cookies);
       }
       return;
     }
@@ -37,6 +37,7 @@ export default function AuthProvider({ children }) {
         token,
         login,
         logout,
+        setUser,
       }}
     >
       {children}
