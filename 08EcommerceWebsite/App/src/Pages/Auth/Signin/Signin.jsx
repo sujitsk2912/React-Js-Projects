@@ -2,27 +2,21 @@ import { Field, Formik, Form, ErrorMessage } from "formik";
 import { useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import { object, string } from "yup";
-import { GetsigninUser, signinUser } from "../../../api/query/userQuery";
+import { signinUser } from "../../../api/query/userQuery";
 import { Button, useToast } from "@chakra-ui/react";
-// import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 
 const Signin = () => {
-  // const { login } = useAuth();
+  const { login } = useAuth();
   const toast = useToast();
 
   const { mutate, isLoading } = useMutation({
     mutationKey: ["signin"],
-    mutationFn: GetsigninUser,
+    mutationFn: signinUser,
     onSuccess: (data) => {
-      // console.log(data);
-      const token = data;
+      const { token } = data;
       if (token) {
-        // login(token);
-        toast({
-          title: "Login Successull",
-          description: data.message,
-          status: "success",
-        });
+        login(token);
       }
     },
     onError: (error) => {
@@ -128,7 +122,7 @@ const Signin = () => {
                     </label>
                   </div>
                   <Link
-                    to={"/forgotpassword"}
+                    to={"/forgot_Password"}
                     className="text-sm font-medium text-violet-700 cursor-pointer hover:underline"
                   >
                     Forgot Password?
@@ -159,41 +153,18 @@ const Signin = () => {
                 >
                   Log In
                 </Button>
-                <div className="flex items-center justify-center mt-4">
-                  <p className="text-sm font-medium text-gray-600 cursor-default">
-                    Don't have an account?
-                    <Link
-                      to={"/signup"}
-                      className="ml-2 text-sm font-medium text-violet-700 cursor-pointer hover:underline"
-                    >
-                      Create Account
-                    </Link>
-                  </p>
+                <div className="mt-4 flex items-center justify-center text-sm font-medium">
+                  <p className="text-gray-600">Don't have an account?</p>
+                  <Link
+                    to={"/signup"}
+                    className="ml-2 text-sm font-medium text-violet-700 cursor-pointer hover:underline"
+                  >
+                    Create Account
+                  </Link>
                 </div>
               </Form>
             }
           </Formik>
-
-          {/* <Link to={"/signup"}>
-            <Button
-              marginTop="3"
-              height="10"
-              width="full"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              padding="2"
-              fontWeight="500"
-              fontSize="sm"
-              borderRadius="lg"
-              transition="all 0.2s"
-              bg="#D8DDE2"
-              color="#797E82"
-              _hover={{ bg: "rgb(79 70 229)", color: "white" }}
-            >
-              Create New Account
-            </Button>
-          </Link> */}
         </div>
       </div>
     </div>

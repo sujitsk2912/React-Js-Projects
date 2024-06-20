@@ -15,11 +15,9 @@ const Signup = () => {
     mutationKey: ["signup"],
     mutationFn: signupUser,
     onSuccess: (data) => {
-      navigate("/signin");
-      // if (email != "") {
-      //   // navigate(`/send-verification-mail/${email}`);
-      // }
-      // console.log(data);
+      if (email != "") {
+        navigate(`/send-verification-mail/${email}`);
+      }
     },
     onError: (error) => {
       toast({
@@ -230,26 +228,16 @@ const Signup = () => {
                 >
                   Create Account
                 </Button>
-                <div className="flex items-center justify-center mt-4">
-                  <p className="ml-2 text-sm font-medium text-gray-600 cursor-default">
-                    Already have an account?
-                    <Link
-                      to={"/signin"}
-                      className="ml-2 text-sm font-medium text-violet-700 cursor-pointer hover:underline"
-                    >
-                      Log In
-                    </Link>
-                  </p>
-                </div>
-                {/* <div className="mt-4 flex items-center justify-center text-sm font-medium">
+
+                <div className="mt-4 flex items-center justify-center text-sm font-medium">
                   <p className="text-gray-600">Already have an account?</p>
                   <Link
-                    to="/signin"
-                    className="ml- text-violet-700 cursor-pointer"
+                    to={"/signin"}
+                    className="ml-2 text-sm font-medium text-violet-700 cursor-pointer hover:underline"
                   >
-                    Log In
+                    Login
                   </Link>
-                </div> */}
+                </div>
               </Form>
             }
           </Formik>

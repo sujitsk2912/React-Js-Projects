@@ -1,12 +1,12 @@
 import { Button, useToast } from "@chakra-ui/react";
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import { GoArrowLeft } from "react-icons/go";
-// import { useMutation } from "react-query";
+import { useMutation } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { object, string } from "yup";
-// import { sendForgotMail } from "../../../api/query/userQuery";
-// import { useContext } from "react";
-// import { UrlContext } from "./UrlContext";
+import { sendForgotMail } from "../../../api/query/userQuery";
+import { useContext } from "react";
+import { UrlContext } from "./UrlContext";
 
 const ForgotPassword = () => {
   const forgetPasswordValidationSchema = object({
@@ -19,28 +19,28 @@ const ForgotPassword = () => {
   const toast = useToast();
   const navigate = useNavigate();
   
-  // const { setUrl } = useContext(UrlContext);
+  const { setUrl } = useContext(UrlContext);
 
-  // const urlPattern = /(https?:\/\/[^\s]+)/g;
-  // const { mutate, isLoading } = useMutation({
-  //   mutationKey: ["forgot-password"],
-  //   mutationFn: sendForgotMail,
-  //   onSuccess: (data) => {
-  //      const extractUrl = data.message.match(urlPattern);
-  //      setUrl(extractUrl ? extractUrl[0] : null);
-  //     if (email) {
-  //       navigate(`/verify_Password/${email}`);
-  //     }
-  //   },
-  //   onError: (error) => {
-  //     toast({
-  //       title: "Signin Error",
-  //       description: error.message,
-  //       status: "error",
-  //     });
-  //   },
-  //   enabled: !!email,
-  // });
+  const urlPattern = /(https?:\/\/[^\s]+)/g;
+  const { mutate, isLoading } = useMutation({
+    mutationKey: ["forgot-password"],
+    mutationFn: sendForgotMail,
+    onSuccess: (data) => {
+       const extractUrl = data.message.match(urlPattern);
+       setUrl(extractUrl ? extractUrl[0] : null);
+      if (email) {
+        navigate(`/verify_Password/${email}`);
+      }
+    },
+    onError: (error) => {
+      toast({
+        title: "Signin Error",
+        description: error.message,
+        status: "error",
+      });
+    },
+    enabled: !!email,
+  });
   // console.log(url);
 
   return (
@@ -66,7 +66,7 @@ const ForgotPassword = () => {
             }}
             onSubmit={async (values) => {
               email = document.getElementById("email").value;
-              // mutate({ email: values.email });
+              mutate({ email: values.email });
             }}
             validationSchema={forgetPasswordValidationSchema}
           >
@@ -95,7 +95,7 @@ const ForgotPassword = () => {
                 </div>
 
                 <Button
-                  // isLoading={isLoading}
+                  isLoading={isLoading}
                   type="submit"
                   mt="5"
                   height="10"
