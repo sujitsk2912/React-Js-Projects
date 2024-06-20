@@ -39,7 +39,7 @@ const ProductCard = ({ products }) => {
               <p className="product-description whitespace-nowrap text-ellipsis overflow-hidden text-[14px] ">
                 {item.attributes.description}
               </p>
-              <hr className="mt-2 mb-2" />
+              <hr className="mt-2 " />
               <div className="flex items-center justify-between">
                 <span className="text-lg font-semibold">
                   ₹{item.attributes.price}
@@ -57,7 +57,7 @@ const ProductCard = ({ products }) => {
                   </button>
                 </span>
               </div>
-              <button
+              {/* <button
                 type="button"
                 onClick={() => {
                   // handleAddToCart(data?.data[0], value);
@@ -65,11 +65,10 @@ const ProductCard = ({ products }) => {
                   // setValue(1);
                   // addToCart();
                 }}
-                className="inline-flex items-center tracking-wider  bg-black p-2 text-sm font-medium  text-white rounded-md uppercase justify-center mt-1"
+                className="inline-flex items-center tracking-wider  bg-z p-2 text-sm font-medium  text-white rounded-md uppercase justify-center mt-1"
               >
-                {/* <FaCartPlus className="text-lg mr-2" /> */}
                 Add To cart
-              </button>
+              </button> */}
             </div>
           </div>
         ))}

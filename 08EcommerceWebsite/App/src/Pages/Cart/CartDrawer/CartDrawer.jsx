@@ -11,7 +11,7 @@ import { loadStripe } from "@stripe/stripe-js";
 const CartDrawer = ({ setShowCart }) => {
   const { cartItems, cartCount, cartSubTotal } = useContext(Context);
   const navigate = useNavigate();
-  // console.log(cartItems);
+  // console.log(cartItems);z
   const stripePromise = loadStripe(
     import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY
   );

@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import "./Category.scss";
 import { toast } from "react-toastify";
+import { CiHeart } from "react-icons/ci";
 
 const Category = () => {
   const navigate = useNavigate();
@@ -45,25 +46,36 @@ const Category = () => {
               <p className="product-description whitespace-nowrap text-ellipsis overflow-hidden text-[14px] ">
                 {item.attributes.description}
               </p>
-              <hr className="mt-2 mb-2" />
-              <div className="flex items-center justify-between my-1">
+              <hr className="mt-2 " />
+              <div className="flex items-center justify-between">
                 <span className="text-lg font-semibold">
                   ₹{item.attributes.price}
                 </span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    // handleAddToCart(data?.data[0], value);
-                    // console.log(data?.data[0]);
-                    // setValue(1);
-                    // addToCart();
-                  }}
-                  className="inline-flex items-center tracking-wider  bg-black px-4 py-2 text-sm font-medium  text-white rounded-md "
-                >
-                  {/* <FaCartPlus className="text-lg mr-2" /> */}
-                  Add To cart
-                </button>
+                <span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      // handleAddToWishlist(data?.data[0], value);
+                      // addToWishlist();
+                    }}
+                    className="inline-flex items-center tracking-wider rounded-md bg-transparent px-3 py-2 text-sm font-medium  text-black justify-center gap-1 "
+                  >
+                    <CiHeart className="text-2xl " />
+                  </button>
+                </span>
               </div>
+              {/* <button
+                type="button"
+                onClick={() => {
+                  // handleAddToCart(data?.data[0], value);
+                  // console.log(data?.data[0]);
+                  // setValue(1);
+                  // addToCart();
+                }}
+                className="inline-flex items-center tracking-wider  bg-z p-2 text-sm font-medium  text-white rounded-md uppercase justify-center mt-1"
+              >
+                Add To cart
+              </button> */}
             </div>
           </div>
         ))}
