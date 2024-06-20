@@ -121,7 +121,7 @@ const Navbar = () => {
             Welcome, <span>Sujit</span>
           </p>
 
-          <button
+          {/* <button
             type="button"
             onClick={() => loginWithRedirect()}
             className="hidden lg:block rounded-md border border-white px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white hover:bg-white hover:text-black"
@@ -134,7 +134,7 @@ const Navbar = () => {
             className="hidden lg:block rounded-md border border-white px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white hover:bg-white hover:text-black"
           >
             Log Out
-          </button>
+          </button> */}
         </nav>
         <div className="absolute top-[1.1rem] ml-2 lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />

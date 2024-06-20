@@ -15,9 +15,11 @@ const Signup = () => {
     mutationKey: ["signup"],
     mutationFn: signupUser,
     onSuccess: (data) => {
-      if (email != "") {
-        navigate(`/send-verification-mail/${email}`);
-      }
+      navigate("/signin");
+      // if (email != "") {
+      //   // navigate(`/send-verification-mail/${email}`);
+      // }
+      // console.log(data);
     },
     onError: (error) => {
       toast({
@@ -49,7 +51,7 @@ const Signup = () => {
         <div className="w-full h-full max-sm:mt-20">
           <div className="flex gap-3 flex-col mb-8">
             <h1 className="text-3xl max-sm:text-[22px] font-semibold leading-tight ">
-              Welcome to Crypto App
+              Welcome to E-STORE
             </h1>
             <p className="text-sm text-gray-600">
               Create a free account by filling data below.
@@ -65,7 +67,7 @@ const Signup = () => {
               repeatPassword: "",
             }}
             onSubmit={(values) => {
-              setEmail(values.email);
+              // setEmail(values.email);
               email = document.getElementById("email").value;
               mutate({
                 firstName: values.firstName,
@@ -207,6 +209,7 @@ const Signup = () => {
                 <Button
                   isLoading={isLoading}
                   type="submit"
+                  mt="5"
                   height="10"
                   width="full"
                   display="flex"
@@ -217,21 +220,36 @@ const Signup = () => {
                   fontSize="sm"
                   borderRadius="lg"
                   transition="all 0.2s"
-                  bg="#D8DDE2"
-                  color="#797E82"
-                  _hover={{ bg: "rgb(79 70 229)", color: "white" }}
+                  bg="rgb(79 70 229)"
+                  color="#fff"
+                  _hover={{
+                    bg: "#fff",
+                    color: "rgb(79 70 229)",
+                    border: "1px solid rgb(79 70 229)",
+                  }}
                 >
                   Create Account
                 </Button>
-
-                <div className="mt-4 flex items-center justify-center text-sm font-medium">
-                  <p className="text-gray-600">Already have an account?</p>
-                  <Link to="/signin">
-                    <span className="ml-2 text-violet-700 cursor-pointer">
+                <div className="flex items-center justify-center mt-4">
+                  <p className="ml-2 text-sm font-medium text-gray-600 cursor-default">
+                    Already have an account?
+                    <Link
+                      to={"/signin"}
+                      className="ml-2 text-sm font-medium text-violet-700 cursor-pointer hover:underline"
+                    >
                       Log In
-                    </span>
-                  </Link>
+                    </Link>
+                  </p>
                 </div>
+                {/* <div className="mt-4 flex items-center justify-center text-sm font-medium">
+                  <p className="text-gray-600">Already have an account?</p>
+                  <Link
+                    to="/signin"
+                    className="ml- text-violet-700 cursor-pointer"
+                  >
+                    Log In
+                  </Link>
+                </div> */}
               </Form>
             }
           </Formik>

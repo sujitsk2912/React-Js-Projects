@@ -2,7 +2,7 @@ import { Field, Formik, Form, ErrorMessage } from "formik";
 import { useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import { object, string } from "yup";
-import { signinUser } from "../../../api/query/userQuery";
+import { GetsigninUser, signinUser } from "../../../api/query/userQuery";
 import { Button, useToast } from "@chakra-ui/react";
 // import useAuth from "../../../hooks/useAuth";
 
@@ -12,11 +12,17 @@ const Signin = () => {
 
   const { mutate, isLoading } = useMutation({
     mutationKey: ["signin"],
-    mutationFn: signinUser,
+    mutationFn: GetsigninUser,
     onSuccess: (data) => {
-      const { token } = data;
+      // console.log(data);
+      const token = data;
       if (token) {
         // login(token);
+        toast({
+          title: "Login Successull",
+          description: data.message,
+          status: "success",
+        });
       }
     },
     onError: (error) => {
@@ -43,7 +49,7 @@ const Signin = () => {
         <div className="w-full h-full">
           <div className="flex gap-3 flex-col mb-8">
             <h1 className="text-3xl max-sm:text-[22px] font-semibold leading-tight ">
-              Welcome to Crypto App
+              Welcome to E-STORE
             </h1>
             <p className="text-sm text-gray-600">
               Enter your credentials to access the account.
@@ -122,7 +128,7 @@ const Signin = () => {
                     </label>
                   </div>
                   <Link
-                    to={"/forgot_Password"}
+                    to={"/forgotpassword"}
                     className="text-sm font-medium text-violet-700 cursor-pointer hover:underline"
                   >
                     Forgot Password?
@@ -132,6 +138,7 @@ const Signin = () => {
                 <Button
                   isLoading={isLoading}
                   type="submit"
+                  mt="5"
                   height="10"
                   width="full"
                   display="flex"
@@ -142,16 +149,32 @@ const Signin = () => {
                   fontSize="sm"
                   borderRadius="lg"
                   transition="all 0.2s"
-                  bg="#D8DDE2"
-                  color="#797E82"
-                  _hover={{ bg: "rgb(79 70 229)", color: "white" }}
+                  bg="rgb(79 70 229)"
+                  color="#fff"
+                  _hover={{
+                    bg: "#fff",
+                    color: "rgb(79 70 229)",
+                    border: "1px solid rgb(79 70 229)",
+                  }}
                 >
                   Log In
                 </Button>
+                <div className="flex items-center justify-center mt-4">
+                  <p className="text-sm font-medium text-gray-600 cursor-default">
+                    Don't have an account?
+                    <Link
+                      to={"/signup"}
+                      className="ml-2 text-sm font-medium text-violet-700 cursor-pointer hover:underline"
+                    >
+                      Create Account
+                    </Link>
+                  </p>
+                </div>
               </Form>
             }
           </Formik>
-          <Link to={"/signup"}>
+
+          {/* <Link to={"/signup"}>
             <Button
               marginTop="3"
               height="10"
@@ -170,7 +193,7 @@ const Signin = () => {
             >
               Create New Account
             </Button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
