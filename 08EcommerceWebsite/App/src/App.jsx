@@ -1,12 +1,6 @@
 import "./App.css";
 import HomePage from "./Pages/HomePage/HomePage";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  useLocation,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Category from "./Components/Category/Category";
 import Newsletter from "./Components/Footer/Newsletter/Newsletter";
 import Footer from "./Components/Footer/Footer";
