@@ -1,5 +1,61 @@
 @import "/public/css-configs/mixins.scss";
 
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
+
+.dropbtn {
+  font-family: montserrat;
+  color: white;
+  font-size: 14px;
+  margin-top: 7px;
+  margin-left: -10px;
+  border: none;
+  width: fit-content;
+}
+
+// .dropdown {
+//   color: black;
+//   position: relative;
+//   display: inline-block;
+//   border-radius: 10px 10px 10px 10px;
+//   z-index: 1;
+// }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #202020;
+  min-width: 120px;
+  z-index: 1;
+  // left: 80%;
+  // top: 80%;
+  top: 70%;
+  left: 0;
+  border-radius: 10px;
+  // box-shadow: 0px 0px 100px rgba(190, 200, 255, 0.25);
+}
+
+.dropdown-content a {
+  // color: white;
+  padding: 6px;
+  text-decoration: none;
+  display: block;
+  border-radius: 10px;
+  margin: 5px;
+  margin-top: 20px;
+  color: #fff;
+  border: 2px solid white;
+  background: transparent;
+}
+
+.dropdown-content a:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 /* Header section */
 
 .sticky-header {
@@ -51,6 +107,13 @@
     color: #fff !important;
     background: transparent;
   }
+}
+
+.hr {
+  background-color: rgba(255, 255, 255, 0.237);
+  width: 100%;
+  height: 1px;
+  margin-top: 0.3rem;
 }
 
 /* end header */

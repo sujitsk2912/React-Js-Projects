@@ -1,12 +1,13 @@
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { useMutation } from "react-query";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { object, string } from "yup";
 import { signinUser } from "../../../api/query/userQuery";
 import { Button, useToast } from "@chakra-ui/react";
 import useAuth from "../../../hooks/useAuth";
 
 const Signin = () => {
+  const navigate = useNavigate();
   const { login, setUser, setToken } = useAuth();
 
   const toast = useToast();
@@ -16,13 +17,15 @@ const Signin = () => {
     mutationFn: signinUser,
     onSuccess: (data) => {
       // const { token } = data;
-      // if (data.token) {
-      login(data.token);
-      setUser(data.firstName);
-      setToken(data.token);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("loggedIn", true);
-      // }
+      console.log(data);
+      if (data.token) {
+        login(data.token);
+        setUser(data.firstName);
+        setToken(data.token);
+        navigate(`/`);
+        window.localStorage.setItem("token", data.token);
+        window.localStorage.setItem("loggedIn", true);
+      }
     },
     onError: (error) => {
       toast({

@@ -26,14 +26,14 @@ import ResetPassword from "./Pages/Auth/ForgotPassword/ResetPassword";
 import ResetSuccess from "./Pages/Auth/ForgotPassword/ResetSuccess";
 import EmailSent from "./Pages/Auth/ForgotPassword/EmailSent";
 import { UrlProvider } from "./Pages/Auth/ForgotPassword/UrlContext";
-import ProtectedRoute from "./Components/Auth/ProtectedRoute"; // Assuming this component exists
-import AlreadySignin from "./Components/Auth/AlreadySignin"; // Assuming this component exists
+import ProtectedRoute from "./Components/Auth/ProtectedRoute";
+import AlreadySignin from "./Components/Auth/AlreadySignin";
 import NotFound from "./Components/404-NotFound/NotFound";
 
 function App() {
   const location = useLocation();
-  const isLoggedIn = window.localStorage.getItem("loggedIn");
-  // Paths where you don't want to show Navbar, Footer, Newsletter, etc.
+  const isLoggedIn = JSON.parse(window.localStorage.getItem("loggedIn"));
+
   const noHeaderFooterPaths = [
     "/signin",
     "/signup",
@@ -64,12 +64,16 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<ProtectedRoute>{<HomePage />}</ProtectedRoute>}
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <HomePage />
+                  </ProtectedRoute>
+                }
               />
               <Route
                 path="/category/:id"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Category />
                   </ProtectedRoute>
                 }
@@ -77,7 +81,7 @@ function App() {
               <Route
                 path="/product/:id"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <ProductDetails />
                   </ProtectedRoute>
                 }
@@ -85,7 +89,7 @@ function App() {
               <Route
                 path="/success"
                 element={
-                  <AlreadySignin>
+                  <AlreadySignin isLoggedIn={isLoggedIn}>
                     <Success />
                   </AlreadySignin>
                 }
@@ -93,7 +97,7 @@ function App() {
               <Route
                 path="/signup"
                 element={
-                  <AlreadySignin>
+                  <AlreadySignin isLoggedIn={isLoggedIn}>
                     <Signup />
                   </AlreadySignin>
                 }
@@ -101,7 +105,7 @@ function App() {
               <Route
                 path="/signin"
                 element={
-                  <AlreadySignin>
+                  <AlreadySignin isLoggedIn={isLoggedIn}>
                     <Signin />
                   </AlreadySignin>
                 }
@@ -109,7 +113,7 @@ function App() {
               <Route
                 path="/forgot_Password"
                 element={
-                  <AlreadySignin>
+                  <AlreadySignin isLoggedIn={isLoggedIn}>
                     <ForgotPassword />
                   </AlreadySignin>
                 }
@@ -117,7 +121,7 @@ function App() {
               <Route
                 path="/send-verification-mail/:email"
                 element={
-                  <AlreadySignin>
+                  <AlreadySignin isLoggedIn={isLoggedIn}>
                     <EmailVerification />
                   </AlreadySignin>
                 }
@@ -125,7 +129,7 @@ function App() {
               <Route
                 path="/email-verify/:token"
                 element={
-                  <AlreadySignin>
+                  <AlreadySignin isLoggedIn={isLoggedIn}>
                     <RegistrationSuccess />
                   </AlreadySignin>
                 }
@@ -133,7 +137,7 @@ function App() {
               <Route
                 path="/forgot-password-verify/:token"
                 element={
-                  <AlreadySignin>
+                  <AlreadySignin isLoggedIn={isLoggedIn}>
                     <ResetPassword />
                   </AlreadySignin>
                 }
@@ -141,7 +145,7 @@ function App() {
               <Route
                 path="/reset_Successful"
                 element={
-                  <AlreadySignin>
+                  <AlreadySignin isLoggedIn={isLoggedIn}>
                     <ResetSuccess />
                   </AlreadySignin>
                 }
@@ -149,13 +153,12 @@ function App() {
               <Route
                 path="/verify_Password/:email"
                 element={
-                  <AlreadySignin>
+                  <AlreadySignin isLoggedIn={isLoggedIn}>
                     <EmailSent />
                   </AlreadySignin>
                 }
               />
-              {/* Catch-all route for unknown paths */}
-              <Route path="*" element={<Navigate to="/404-NotFound" />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
             {!shouldHideHeaderFooter && <Newsletter />}
             {!shouldHideHeaderFooter && <Footer />}

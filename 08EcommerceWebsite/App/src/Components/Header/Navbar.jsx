@@ -9,6 +9,7 @@ import CartDrawer from "../../Pages/Cart/CartDrawer/CartDrawer";
 import SearchProducts from "../../Pages/SearchProducts/SearchProducts";
 import { Context } from "../../utils/context";
 import { useNavigate } from "react-router-dom";
+import { IoIosArrowDown } from "react-icons/io";
 // import { useAuth0 } from "@auth0/auth0-react";
 import useAuth from "../../hooks/useAuth";
 
@@ -118,11 +119,11 @@ const Navbar = () => {
               )}
             </span>
           </div>
-          <div className="max-sm:hidden flex items-center gap-1.5">
+          <div className="relative dropdown max-sm:hidden flex items-center gap-1.5">
             <p className="dropdownMenuLink">
               Welcome, <span>{user}</span>
             </p>
-            <div className="dropdown show flex mt-1">
+            <div className="dropdown show flex mt-1 ">
               <a
                 className="dropdown-toggle"
                 href="#"
@@ -137,18 +138,37 @@ const Navbar = () => {
                 className="dropdown-menu dropdown-menu-right bg-[#202020] border-0 p-2"
                 aria-labelledby="dropdownMenuLink"
               >
-                <button
+                <div>
+                  <div className="dropdown">
+                    <button className="dropbtn">
+                      <IoIosArrowDown />
+                    </button>
+                    <div className="dropdown-content absolute text-center ">
+                      <a
+                        href=""
+                  
+                        onClick={() => {
+                          logout({ returnTo: window.location.origin });
+                          window.localStorage.clear();
+                          // window.localStorage.href = "/signin";
+                          navigate("/signin");
+                          logout;
+                        }}
+                      >
+                        Logout
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                {/* <button
                   type="button"
                   onClick={() => {
-                    logout({ returnTo: window.location.origin });
-                    window.localStorage.clear();
-                    window.localStorage.href = "/signin";
-                    logout;
+                   
                   }}
                   className="logout-btn hidden lg:block rounded-md shadow-sm"
                 >
                   Logout
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -175,23 +195,31 @@ const Navbar = () => {
                     </button>
                   </div>
                 </div>
-                <div className="mt-6">
+                <div className="hr"></div>
+                <div className="mt-4">
                   <nav className="grid gap-y-4 ">
+                    <p>
+                      Welcome, <span>{user}</span>
+                    </p>
                     {menuItems.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
-                        className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:text-blue-400 "
+                        className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold  "
                       >
                         <span className="ml-3 text-base font-medium text-white ">
                           {item.name}
                         </span>
                       </a>
                     ))}
+
                     <button
                       type="button"
                       onClick={() => {
                         logout({ returnTo: window.location.origin });
+                        window.localStorage.clear();
+                        // window.localStorage.href = "/signin";
+                        navigate("/signin");
                         logout;
                       }}
                       className="logout-btn  rounded-md shadow-sm"
